@@ -1,6 +1,6 @@
-import { Product, Category, NavItem, BrandInfo, SocialLink } from '@/types';
+import { Product, Category, NavItem, BrandInfo, SocialLink, Brand } from '@/types';
 
-// Navigation items
+// Updated Navigation items (2 levels)
 export const navItems: NavItem[] = [
     { label: 'Trang chủ', href: '/' },
     { label: 'Cửa hàng', href: '/shop' },
@@ -14,7 +14,12 @@ export const navItems: NavItem[] = [
             { label: 'Nước hoa', href: '/categories/fragrances' },
         ]
     },
-    { label: 'Về chúng tôi', href: '/about' },
+    {
+        label: 'Thương hiệu',
+        href: '/brands',
+        badge: 'New'
+    },
+    { label: 'Magazine', href: '/magazine' },
     { label: 'Liên hệ', href: '/contact' },
 ];
 
@@ -54,15 +59,125 @@ export const categories: Category[] = [
     },
 ];
 
-// Brands
-export const brands = [
-    { id: 'bella', name: 'Bella Beauty', count: 24 },
-    { id: 'rosé', name: 'Rosé Naturel', count: 18 },
-    { id: 'lumiere', name: 'Lumière', count: 15 },
-    { id: 'bloom', name: 'Bloom Organics', count: 12 },
-    { id: 'velvet', name: 'Velvet Touch', count: 10 },
-    { id: 'aurora', name: 'Aurora Skin', count: 8 },
+// Detailed Brands Data
+export const allBrands: Brand[] = [
+    {
+        id: '1',
+        name: 'Laneige',
+        slug: 'laneige',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Laneige_logo.svg/2560px-Laneige_logo.svg.png',
+        description: 'Thương hiệu mỹ phẩm Hàn Quốc nổi tiếng với công nghệ Water Science độc quyền.',
+        productCount: 24,
+        letter: 'L',
+        featured: true
+    },
+    {
+        id: '2',
+        name: 'Shiseido',
+        slug: 'shiseido',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Shiseido_logo.svg/2560px-Shiseido_logo.svg.png',
+        description: 'Biểu tượng của vẻ đẹp Nhật Bản, kết hợp giữa nghệ thuật và khoa học.',
+        productCount: 18,
+        letter: 'S',
+        featured: true
+    },
+    {
+        id: '3',
+        name: 'Innisfree',
+        slug: 'innisfree',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Innisfree_Logo.svg/1200px-Innisfree_Logo.svg.png',
+        description: 'Vẻ đẹp tự nhiên từ hòn đảo Jeju trong lành.',
+        productCount: 32,
+        letter: 'I',
+        featured: true
+    },
+    {
+        id: '4',
+        name: 'Estée Lauder',
+        slug: 'estee-lauder',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Est%C3%A9e_Lauder_Companies_Logo.svg/2560px-Est%C3%A9e_Lauder_Companies_Logo.svg.png',
+        description: 'Thương hiệu mỹ phẩm cao cấp hàng đầu thế giới.',
+        productCount: 15,
+        letter: 'E',
+        featured: true
+    },
+    {
+        id: '5',
+        name: 'La Roche-Posay',
+        slug: 'la-roche-posay',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/La_Roche-Posay_logo.svg/2560px-La_Roche-Posay_logo.svg.png',
+        description: 'Dược mỹ phẩm hàng đầu được bác sĩ da liễu khuyên dùng.',
+        productCount: 28,
+        letter: 'L',
+        featured: true
+    },
+    {
+        id: '6',
+        name: 'Vichy',
+        slug: 'vichy',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Vichy_Logo.svg/2560px-Vichy_Logo.svg.png',
+        description: 'Thương hiệu dược mỹ phẩm Pháp với nguồn nước khoáng núi lửa.',
+        productCount: 20,
+        letter: 'V'
+    },
+    {
+        id: '7',
+        name: 'Kiehl\'s',
+        slug: 'kiehls',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Kiehl%27s_logo.svg/2560px-Kiehl%27s_logo.svg.png',
+        description: 'Mỹ phẩm thiên nhiên cao cấp từ New York từ năm 1851.',
+        productCount: 12,
+        letter: 'K'
+    },
+    {
+        id: '8',
+        name: 'The Body Shop',
+        slug: 'the-body-shop',
+        logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/The_Body_Shop_logo.svg/1200px-The_Body_Shop_logo.svg.png',
+        description: 'Làm đẹp đạo đức, lấy cảm hứng từ thiên nhiên.',
+        productCount: 30,
+        letter: 'T'
+    },
+    {
+        id: '9',
+        name: 'MAC',
+        slug: 'mac',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/MAC_Cosmetics_logo.svg/2560px-MAC_Cosmetics_logo.svg.png',
+        description: 'Thương hiệu trang điểm chuyên nghiệp hàng đầu thế giới.',
+        productCount: 45,
+        letter: 'M',
+        featured: true
+    },
+    {
+        id: '10',
+        name: 'Maybelline',
+        slug: 'maybelline',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Maybelline_Logo.svg/2560px-Maybelline_Logo.svg.png',
+        description: 'Thương hiệu trang điểm số 1 thế giới.',
+        productCount: 50,
+        letter: 'M'
+    },
+    {
+        id: '11',
+        name: 'L\'Oréal Paris',
+        slug: 'loreal-paris',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/L%27Or%C3%A9al_logo.svg/2560px-L%27Or%C3%A9al_logo.svg.png',
+        description: 'Bởi vì bạn xứng đáng.',
+        productCount: 60,
+        letter: 'L'
+    },
+    {
+        id: '12',
+        name: 'Paula\'s Choice',
+        slug: 'paulas-choice',
+        logo: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Paula%27s_Choice_logo.png',
+        description: 'Mỹ phẩm an toàn, hiệu quả dựa trên nghiên cứu khoa học.',
+        productCount: 22,
+        letter: 'P'
+    }
 ];
+
+export const brands = allBrands.map(b => ({ id: b.slug, name: b.name, count: b.productCount })); // Backward compatibility
 
 // Product images from Unsplash
 const productImages = [

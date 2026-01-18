@@ -27,7 +27,20 @@ export interface Category {
 export interface NavItem {
     label: string;
     href: string;
+    badge?: string;
     children?: NavItem[];
+}
+
+// Brand interface
+export interface Brand {
+    id: string;
+    name: string;
+    slug: string;
+    logo: string;
+    description: string;
+    productCount: number;
+    letter: string;
+    featured?: boolean;
 }
 
 // Brand/Company info
@@ -37,6 +50,15 @@ export interface BrandInfo {
     description: string;
     founded?: number;
     values: string[];
+}
+
+// Search result
+export interface SearchResult {
+    id: string;
+    type: 'product' | 'brand' | 'article';
+    name: string;
+    image?: string;
+    url: string;
 }
 
 // Newsletter subscription

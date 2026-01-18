@@ -5,6 +5,7 @@ import Categories from '@/components/sections/Categories';
 import FeaturedProducts from '@/components/sections/FeaturedProducts';
 import BlogSection from '@/components/sections/BlogSection';
 import Footer from '@/components/sections/Footer';
+import BrandShowcase from '@/components/sections/BrandShowcase';
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
         <Categories />
         <FeaturedProducts />
         <BlogSection />
+        <BrandShowcase />
       </main>
       <Footer />
     </>
