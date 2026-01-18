@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useSpring, useMotionValue, PanInfo } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/types';
@@ -15,6 +15,7 @@ interface RelatedProductsProps {
 const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: RelatedProductsProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
+    const [containerWidth, setContainerWidth] = useState(800);
 
     const x = useMotionValue(0);
     const springX = useSpring(x, { stiffness: 300, damping: 30 });
@@ -23,9 +24,19 @@ const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: Relate
     const gap = 24;
     const totalWidth = products.length * (cardWidth + gap) - gap;
 
-    const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    useEffect(() => {
+        const updateWidth = () => {
+            if (containerRef.current) {
+                setContainerWidth(containerRef.current.offsetWidth);
+            }
+        };
+        updateWidth();
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    }, []);
+
+    const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         setIsDragging(false);
-        const containerWidth = containerRef.current?.offsetWidth || 0;
         const maxDrag = Math.max(0, totalWidth - containerWidth);
 
         if (info.offset.x > 0) {
@@ -38,7 +49,6 @@ const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: Relate
     return (
         <section className="py-16 lg:py-24 overflow-hidden">
             <div className="container mx-auto px-4 lg:px-8">
-                {/* Section Header */}
                 {title && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -63,11 +73,10 @@ const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: Relate
                     </motion.div>
                 )}
 
-                {/* Carousel */}
                 <div ref={containerRef} className="overflow-hidden -mx-4 px-4">
                     <motion.div
                         drag="x"
-                        dragConstraints={{ left: -(totalWidth - (containerRef.current?.offsetWidth || 800) + 32), right: 0 }}
+                        dragConstraints={{ left: -(totalWidth - containerWidth + 32), right: 0 }}
                         dragElastic={0.2}
                         onDragStart={() => setIsDragging(true)}
                         onDragEnd={handleDragEnd}
@@ -92,12 +101,11 @@ const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: Relate
                                         whileHover={{ y: -8 }}
                                         className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-shadow"
                                     >
-                                        {/* Image */}
                                         <div className="relative aspect-square bg-gradient-to-br from-cream-50 to-lavender-50">
                                             {product.badge && (
                                                 <div className={`absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full text-xs font-semibold ${product.badge === 'new' ? 'bg-mint-100 text-emerald-700' :
-                                                        product.badge === 'bestseller' ? 'bg-primary-100 text-primary-500' :
-                                                            'bg-lavender-100 text-purple-700'
+                                                    product.badge === 'bestseller' ? 'bg-primary-100 text-primary-500' :
+                                                        'bg-lavender-100 text-purple-700'
                                                     }`}>
                                                     {product.badge === 'new' ? 'Mới' : product.badge === 'bestseller' ? 'Bán chạy' : 'Giảm giá'}
                                                 </div>
@@ -112,7 +120,6 @@ const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: Relate
                                             />
                                         </div>
 
-                                        {/* Content */}
                                         <div className="p-4">
                                             {product.rating && (
                                                 <div className="flex items-center gap-1 mb-2">
@@ -150,7 +157,6 @@ const RelatedProducts = ({ products, title = 'Sản phẩm liên quan' }: Relate
                     </motion.div>
                 </div>
 
-                {/* Scroll Indicator */}
                 <div className="flex justify-center mt-6 gap-2">
                     <span className="text-xs text-text-muted">← Vuốt để xem thêm →</span>
                 </div>

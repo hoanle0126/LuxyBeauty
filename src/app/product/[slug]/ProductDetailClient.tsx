@@ -11,7 +11,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import RelatedProducts from '@/components/ui/RelatedProducts';
 import ProductReviewsSystem from '@/components/ui/ProductReviewsSystem';
 import Button from '@/components/ui/Button';
-import { formatPrice, allProducts } from '@/lib/data';
+import { formatPrice } from '@/lib/data';
 import { Product } from '@/types';
 
 // Mock data
@@ -45,12 +45,6 @@ const specs = [
     { label: 'Thành phần chính', value: 'Hyaluronic Acid, Vitamin C, Niacinamide' },
 ];
 
-const reviews = [
-    { id: '1', author: 'Minh Anh', rating: 5, date: '2 ngày trước', content: 'Sản phẩm tuyệt vời! Da sáng hẳn sau 2 tuần.' },
-    { id: '2', author: 'Thu Hương', rating: 5, date: '1 tuần trước', content: 'Đáng đồng tiền, mùi thơm nhẹ nhàng.' },
-    { id: '3', author: 'Linh Chi', rating: 4, date: '2 tuần trước', content: 'Da mình láng mịn hơn nhiều.' },
-];
-
 interface ProductDetailClientProps {
     product: Product;
     relatedProducts: Product[];
@@ -69,7 +63,7 @@ export default function ProductDetailClient({ product, relatedProducts }: Produc
     const { scrollY } = useScroll();
 
     useEffect(() => {
-        const unsubscribe = scrollY.on('change', (y) => {
+        const unsubscribe = scrollY.on('change', (_y) => {
             if (buyButtonRef.current) {
                 const rect = buyButtonRef.current.getBoundingClientRect();
                 setShowStickyBar(rect.bottom < 0);

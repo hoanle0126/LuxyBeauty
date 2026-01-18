@@ -38,16 +38,6 @@ const mockReviews = [
     { id: '30', author: 'Thanh Thảo', rating: 5, date: '6 tháng trước', content: 'Sản phẩm này thay đổi cuộc đời skincare của mình! Quá tuyệt vời! 🌟', images: ['https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=200&q=80'], verified: true },
 ];
 
-interface Review {
-    id: string;
-    author: string;
-    rating: number;
-    date: string;
-    content: string;
-    images?: string[];
-    verified?: boolean;
-}
-
 interface ProductReviewsSystemProps {
     productRating?: number;
     totalReviews?: number;
@@ -132,7 +122,7 @@ export default function ProductReviewsSystem({
         setFormData({ rating: 0, content: '' });
         setShowToast(true);
         setTimeout(() => setShowToast(false), 3000);
-    }, [formData]);
+    }, [formData, currentUser]);
 
     const handleFilterChange = useCallback((star: number | null) => {
         setFilterStar(star);

@@ -55,7 +55,7 @@ interface MagazineDetailClientProps {
     slug: string;
 }
 
-export default function MagazineDetailClient({ slug }: MagazineDetailClientProps) {
+export default function MagazineDetailClient({ slug: _slug }: MagazineDetailClientProps) {
     const relatedProducts = allProducts.filter(p =>
         articleData.relatedProductIds.includes(p.id)
     );
